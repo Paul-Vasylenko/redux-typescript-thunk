@@ -1,19 +1,16 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
 import "./App.css";
 import { useActions, useAppSelector } from "./hooks/redux-hooks";
-import { AddTodoAction } from "./store/actions/todoActions";
 
 function App() {
   const { loading, errors, todos } = useAppSelector((store) => store.todos);
-  const { fetchTodos } = useActions();
+  const { fetchTodos, AddTodoAction } = useActions();
   const [title, setTitle] = useState("");
-  const dispatch = useDispatch();
   useEffect(() => {
     fetchTodos();
   }, []); //fetchTodos should be included into dependencies. It occurs errors!
   const handleAdd = () => {
-    dispatch(AddTodoAction({ id: Math.ceil(Math.random() * 1000), title }));
+    AddTodoAction({ id: Math.ceil(Math.random() * 1000), title });
     setTitle("");
   };
   if (errors.length > 0) {
