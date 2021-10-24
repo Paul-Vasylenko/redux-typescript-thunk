@@ -1,5 +1,5 @@
 {
-  "name": "redux-typescript",
+  "name": "react-redux-thunk-ts",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

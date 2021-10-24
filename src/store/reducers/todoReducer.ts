@@ -17,6 +17,8 @@ export const todoReducer = (
       return { ...state, loading: false, todos: action.payload };
     case TodoActions.FETCH_TODOS_ERROR:
       return { ...state, loading: false, errors: [action.payload] };
+    case TodoActions.ADD_TODO:
+      return { ...state, todos: [action.payload, ...state.todos] };
     default:
       return state;
   }

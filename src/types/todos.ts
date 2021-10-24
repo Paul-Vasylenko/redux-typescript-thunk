@@ -2,6 +2,7 @@ export enum TodoActions {
   FETCH_TODOS = "FETCH_TODOS",
   FETCH_TODOS_SUCCESS = "FETCH_TODOS_SUCCESS",
   FETCH_TODOS_ERROR = "FETCH_TODOS_ERROR",
+  ADD_TODO = "ADD_TODO",
 }
 
 interface IFetchTodos {
@@ -10,7 +11,7 @@ interface IFetchTodos {
 
 interface IFetchTodosSuccess {
   type: TodoActions.FETCH_TODOS_SUCCESS;
-  payload: any[];
+  payload: ITodo[];
 }
 
 interface IFetchTodosError {
@@ -18,7 +19,16 @@ interface IFetchTodosError {
   payload: string;
 }
 
-export type ITodoAction = IFetchTodos | IFetchTodosSuccess | IFetchTodosError;
+interface IAddTodo {
+  type: TodoActions.ADD_TODO;
+  payload: ITodo;
+}
+
+export type ITodoAction =
+  | IFetchTodos
+  | IFetchTodosSuccess
+  | IFetchTodosError
+  | IAddTodo;
 
 export interface ITodoState {
   loading: boolean;

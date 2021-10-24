@@ -15,6 +15,11 @@ const FetchTodosErrorAction = (error: string): ITodoAction => ({
   payload: error,
 });
 
+export const AddTodoAction = (todo: ITodo): ITodoAction => ({
+  type: TodoActions.ADD_TODO,
+  payload: todo,
+});
+
 export const fetchTodos = () => {
   return async (dispatch: Dispatch<ITodoAction>) => {
     try {
