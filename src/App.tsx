@@ -8,7 +8,7 @@ function App() {
   const [title, setTitle] = useState("");
   useEffect(() => {
     fetchTodos();
-  }, []); //fetchTodos should be included into dependencies. It occurs errors!
+  }, []); //fetchTodos should NOT be included into dependencies. It occurs errors!
   const handleAdd = () => {
     AddTodoAction({ id: Math.ceil(Math.random() * 1000), title });
     setTitle("");

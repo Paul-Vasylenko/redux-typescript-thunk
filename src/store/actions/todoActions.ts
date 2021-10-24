@@ -22,13 +22,10 @@ export const AddTodoAction = (todo: ITodo): ITodoAction => ({
 
 export const fetchTodos = () => {
   return async (dispatch: Dispatch<ITodoAction>) => {
-    try {
-      dispatch(FetchTodosAction());
-      fetch("https://jsonplaceholder.typicode.com/todos?_limit=10")
-        .then((res) => res.json())
-        .then((res) => dispatch(FetchTodosSuccessAction(res)));
-    } catch (e) {
-      dispatch(FetchTodosErrorAction("Error!"));
-    }
+    dispatch(FetchTodosAction());
+    fetch("https://jsonplaceholder.typicoe.com/todos?_limit=10")
+      .then((res) => res.json())
+      .then((res) => dispatch(FetchTodosSuccessAction(res)))
+      .catch((err: Error) => dispatch(FetchTodosErrorAction(err.message)));
   };
 };
