@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./App.css";
 import { useActions, useAppSelector } from "./hooks/redux-hooks";
+import { Todo } from "./Todo";
 
 function App() {
   const { loading, errors, todos } = useAppSelector((store) => store.todos);
@@ -10,7 +11,11 @@ function App() {
     fetchTodos();
   }, []); //fetchTodos should NOT be included into dependencies. It occurs errors!
   const handleAdd = () => {
-    AddTodoAction({ id: Math.ceil(Math.random() * 1000), title });
+    AddTodoAction({
+      id: Math.ceil(Math.random() * 1000),
+      title,
+      completed: false,
+    });
     setTitle("");
   };
   if (errors.length > 0) {
@@ -30,9 +35,7 @@ function App() {
       ) : (
         <div>
           {todos.map((todo) => (
-            <div key={todo.id}>
-              {todo.id} &gt; {todo.title}
-            </div>
+            <Todo todo={todo} />
           ))}
         </div>
       )}
